@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <style>
             html{margin: 0px;height: 100%;width: 100%}
             body{margin: 0px;height: 100%;width: 100%}
-            div{height:100%;margin:0px}
-            #top_menu{height: 40px;background: rgb(86, 152, 206);position: relative;;-webkit-app-region: drag}  
+            div{height:100%;margin:0px;;-webkit-user-select: none;}
+            #top_menu{height: 40px;background: rgb(86, 152, 206);position: relative;;-webkit-app-region: drag;}  
             #bot_content{height:540px;position:absolute;top:40px;bottom: 0px}
             #left_menu{width: 150px; float: left;background: rgb(243, 246, 255);border-right:solid 1px rgb(204, 204, 204)}
             #right_content{float:right;margin-left: 150px;width:650px;height: 100%;position: absolute}
@@ -14,7 +15,10 @@
             .idx{height: 40px; width: 130px;line-height: 40px;font-size: 12px;font-family: Arial;padding-left: 15px;color: rgba(0, 0, 0,0.7);margin-left: 5px}
             #homeidx{margin-top:20px}
             #sttsbar{height: 20px;width: 100%;bottom: 0px;position:absolute;background:rgb(126, 181, 226);font-family: Arial;font-size: 9px;color:white;line-height: 22px;padding-left: 10px;box-sizing: border-box}
-            .page{position:absolute;width:100%;height: 100%;display: none;background:rgb(255, 255, 255)}
+            .page{position:absolute;width:100%;height: 100%;display: none;background:rgb(255, 255, 255);box-sizing: border-box;font-size: 12px;font-family: Arial}
+            #homel{float: left;width:50%;height: 100%;box-sizing: border-box;padding-left: 100px;padding-top: 50px}
+            #homer{float: right;width: 50%;height:100%;box-sizing: border-box;padding-top: 50px}
+            .info{color: rgb(122, 122, 122)}
         </style>
     </head>
     <body>
@@ -32,7 +36,22 @@
                     <div id="wgtidx" class="idx">Weight Data</div>
                 </div>
                 <div id="right_content">
-                    <div id="homepg" class="page">home page</div>
+                    <div id="homepg" class="page">
+                        <div id="homel">
+                            <p>Product Module: </p><br/>
+                            <p>Proguct Id: </p><br/>
+                            <p>Software Version: </p><br/>
+                            <p>Connection Status: </p><br/>
+                            <p>Connecting Port: </p>
+                        </div>
+                        <div id="homer">
+                            <p id="pm" class="info">---------------</p><br/>
+                            <p id="pi" class="info">---------------</p><br/>
+                            <p id="sv" class="info">---------------</p><br/>
+                            <p id="cs" class="info">Disconnected</p><br/>
+                            <p id="cp" class="info">---------------</p>
+                        </div>
+                    </div>
                     <div id="cfgpg" class="page">configuration</div>
                     <div id="fdpg" class="page">food data</div>
                     <div id="wtrdpg" class="page">water</div>
