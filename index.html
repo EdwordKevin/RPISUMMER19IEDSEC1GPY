@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            html{margin: 0px;height: 100%;width: 100%}
+            body{margin: 0px;height: 100%;width: 100%}
+            div{height:100%;margin:0px}
+            #top_menu{height: 30px;background: rgb(86, 152, 206);position: relative;;-webkit-app-region: drag}  
+            #bot_content{height:auto;position:absolute;top:30px;bottom: 0px}
+            #left_menu{width: 100px; float: left;background: rgb(243, 246, 255);border-right:solid 1px rgb(204, 204, 204)}
+            #right_content{float:right;margin-left: 100px}
+            #closebt{height: 20px;width: 20px;margin: auto;float:right;top:0px;bottom: 0px;position:absolute;right:10px;-webkit-app-region: no-drag}
+        </style>
+    </head>
+    <body>
+        <div id="main">
+            <div id="top_menu"><!--top bar with close button-->
+                    <img id="closebt" src="img/close.png"></img>
+            </div>
+            <div id="bot_content">
+                <div id="left_menu"><!--left bar with index-->
+                    
+                </div>
+                <div id="right_content"></div>
+            </div>
+        </div>
+    </body>
+    <script src="jquery.js"></script>
+    <script>if (typeof module === 'object') {window.jQuery = window.$ = module.exports;};</script>
+    <script src="funcs.js"></script>
+    <script src="index.js"></script>
+</html>
