@@ -6,7 +6,7 @@
   "scripts": {
     "start": "electron ."
   },
-  "author": "",
+  "author": "Yutong Xie",
   "license": "ISC",
   "dependencies": {},
   "devDependencies": {

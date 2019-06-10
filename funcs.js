@@ -1,3 +1,10 @@
+//this file contains basic functions used in index.js
+
+
+function sleep(t){
+    return new Promise((resolve)=>{setTimeout(()=>{resolve()},t)})
+}
+
 //add button hover animation
 function bt_anim(selector, hover_img){
     $(selector).each(function(){
@@ -43,13 +50,37 @@ function lb_anim(clslct, color, task){
     });
 }
 
+function fadeout(jq,time){
+    return new Promise((resolve)=>{
+        jq.css({opacity: 1}).animate({opacity: 0},time,"swing",function(){
+            $(this).css({display:"none"});
+            console.log("end");
+            resolve();
+        });
+    });
+}
+
+function fadein(jq,time){
+    return new Promise((resolve)=>{
+        jq.css({opacity: 0}).animate({opacity: 1},time,"swing");
+    });
+}
+
+let first=true;
 function showpage(clselector,idselector){
-    //console.log(idselector);
+    if(first){
+        first=false;
+        fadein($(idselector).css({display:"inline"}),200);
+        return;
+    }
+    let outed=null;
     $(clselector).each(function(){
-        $(this).css("display","none");
-        
+        if($(this).css("display")!="none") {
+            outed=fadeout($(this),200);
+            outed.then(()=>fadein($(idselector).css({display:"inline"}),200));
+        }
     })
-    $(idselector).css("display","inline");
+    
 }
 
 function updatemessage(message){

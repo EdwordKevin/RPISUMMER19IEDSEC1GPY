@@ -1,6 +1,10 @@
+
+
+
 bt_anim("#closebt","img/closehvr.png");//add close button anime
 
 txt_anim(".idx", " rgba(0, 0, 0,0.9)");//add txt button anime
+
 
 lb_anim(".idx", "rgb(224, 229, 241)",function(id){//add left bar task
     switch(id){

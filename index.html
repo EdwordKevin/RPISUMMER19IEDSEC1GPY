@@ -8,8 +8,8 @@
             div{height:100%;margin:0px;;-webkit-user-select: none;}
             #top_menu{height: 40px;background: rgb(86, 152, 206);position: relative;;-webkit-app-region: drag;}  
             #bot_content{height:540px;position:absolute;top:40px;bottom: 0px}
-            #left_menu{width: 150px; float: left;background: rgb(243, 246, 255);border-right:solid 1px rgb(204, 204, 204)}
-            #right_content{float:right;margin-left: 150px;width:650px;height: 100%;position: absolute}
+            #left_menu{width: 150px; float: left;background: rgb(243, 246, 255);border-right:solid 1px rgb(204, 204, 204);}
+            #right_content{float:right;margin-left: 151px;width:649px;height: 100%;position: absolute}
             #closebt{height: 20px;width: 20px;margin: auto;float:right;top:0px;bottom: 0px;position:absolute;right:10px;-webkit-app-region: no-drag}
             #sign{height: 30px;width: 120px;margin: auto;float:left;top:0px;bottom: 0px;position:absolute;left:10px}
             .idx{height: 40px; width: 130px;line-height: 40px;font-size: 12px;font-family: Arial;padding-left: 15px;color: rgba(0, 0, 0,0.7);margin-left: 5px}
@@ -19,7 +19,14 @@
             #homel{float: left;width:50%;height: 100%;box-sizing: border-box;padding-left: 100px;padding-top: 50px}
             #homer{float: right;width: 50%;height:100%;box-sizing: border-box;padding-top: 50px}
             .info{color: rgb(122, 122, 122)}
+            #homepg{display: inline;opacity: 0;}
+
+            @keyframes fadein{
+                from {opacity: 0}
+                to   {opacity: 1} 
+            }
         </style>
+        
     </head>
     <body>
         <div id="main">
