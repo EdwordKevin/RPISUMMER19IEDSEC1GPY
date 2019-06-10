@@ -5,24 +5,41 @@
             html{margin: 0px;height: 100%;width: 100%}
             body{margin: 0px;height: 100%;width: 100%}
             div{height:100%;margin:0px}
-            #top_menu{height: 30px;background: rgb(86, 152, 206);position: relative;;-webkit-app-region: drag}  
-            #bot_content{height:auto;position:absolute;top:30px;bottom: 0px}
-            #left_menu{width: 100px; float: left;background: rgb(243, 246, 255);border-right:solid 1px rgb(204, 204, 204)}
-            #right_content{float:right;margin-left: 100px}
+            #top_menu{height: 40px;background: rgb(86, 152, 206);position: relative;;-webkit-app-region: drag}  
+            #bot_content{height:540px;position:absolute;top:40px;bottom: 0px}
+            #left_menu{width: 150px; float: left;background: rgb(243, 246, 255);border-right:solid 1px rgb(204, 204, 204)}
+            #right_content{float:right;margin-left: 150px;width:650px;height: 100%;position: absolute}
             #closebt{height: 20px;width: 20px;margin: auto;float:right;top:0px;bottom: 0px;position:absolute;right:10px;-webkit-app-region: no-drag}
+            #sign{height: 30px;width: 120px;margin: auto;float:left;top:0px;bottom: 0px;position:absolute;left:10px}
+            .idx{height: 40px; width: 130px;line-height: 40px;font-size: 12px;font-family: Arial;padding-left: 15px;color: rgba(0, 0, 0,0.7);margin-left: 5px}
+            #homeidx{margin-top:20px}
+            #sttsbar{height: 20px;width: 100%;bottom: 0px;position:absolute;background:rgb(126, 181, 226);font-family: Arial;font-size: 9px;color:white;line-height: 22px;padding-left: 10px;box-sizing: border-box}
+            .page{position:absolute;width:100%;height: 100%;display: none;background:rgb(255, 255, 255)}
         </style>
     </head>
     <body>
         <div id="main">
             <div id="top_menu"><!--top bar with close button-->
                     <img id="closebt" src="img/close.png"></img>
+                    <img id="sign" src="img/sign.png"></img>
             </div>
             <div id="bot_content">
                 <div id="left_menu"><!--left bar with index-->
-                    
+                    <div id="homeidx" class="idx">Home</div>
+                    <div id="cfgidx" class="idx">Config</div>
+                    <div id="fdidx" class="idx">Food Data</div>
+                    <div id="wtridx" class="idx">Water Data</div>
+                    <div id="wgtidx" class="idx">Weight Data</div>
                 </div>
-                <div id="right_content"></div>
+                <div id="right_content">
+                    <div id="homepg" class="page">home page</div>
+                    <div id="cfgpg" class="page">configuration</div>
+                    <div id="fdpg" class="page">food data</div>
+                    <div id="wtrdpg" class="page">water</div>
+                    <div id="wgtpg" class="page">weight data</div>
+                </div>
             </div>
+            <div id = "sttsbar">Default Message</div>
         </div>
     </body>
     <script src="jquery.js"></script>

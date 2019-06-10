@@ -14,14 +14,15 @@ function createWin (){
         webPreferences: {
           nodeIntegration: true
         },
-        frame:false
+        frame:false,
+        resizable: false
     });
 
     //load html
     win.loadFile('index.html');
 
     //turn on developer tools
-    win.webContents.openDevTools();
+    //win.webContents.openDevTools();
 
     //cancel referance
     win.on('closed', () => {
