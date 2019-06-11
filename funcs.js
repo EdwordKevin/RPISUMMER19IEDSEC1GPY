@@ -63,6 +63,7 @@ function fadeout(jq,time){
 function fadein(jq,time){
     return new Promise((resolve)=>{
         jq.css({opacity: 0}).animate({opacity: 1},time,"swing");
+        resolve();
     });
 }
 
@@ -70,14 +71,23 @@ let first=true;
 function showpage(clselector,idselector){
     if(first){
         first=false;
-        fadein($(idselector).css({display:"inline"}),200);
+        fadein($(idselector).css({display:"inline"}),200).then(()=>{
+            $(idselector).trigger("pageshown");
+            console.log(idselector);
+        });
         return;
     }
     let outed=null;
     $(clselector).each(function(){
         if($(this).css("display")!="none") {
             outed=fadeout($(this),200);
-            outed.then(()=>fadein($(idselector).css({display:"inline"}),200));
+            outed.then(()=>{
+                let fd = fadein($(idselector).css({display:"inline"}),200);
+                fd.then(()=>{
+                    $(idselector).trigger("pageshown");
+                    console.log(idselector);
+                })
+            });
         }
     })
     

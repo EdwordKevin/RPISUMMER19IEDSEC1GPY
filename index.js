@@ -27,10 +27,17 @@ lb_anim(".idx", "rgb(224, 229, 241)",function(id){//add left bar task
 
 //add close function
 var ipc = require('electron').ipcRenderer;
-$("#closebt").click(function (){
+$("#closebt").click(function (){1
     ipc.send('window-close');
 });
 
 $('#homeidx').trigger("click");
 
 updatemessage("New Message");
+
+$("#homepg").on("pageshown",function(){
+    console.log(1);
+    $("#mp").css({animation:"rot 1.5s"});
+    $("#slp").css({animation:"rot 1s"});
+    $("#srp").css({animation:"rot 1.25s"});
+});

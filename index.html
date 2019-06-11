@@ -3,6 +3,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <style>
+            img{-webkit-user-drag: none}
             html{margin: 0px;height: 100%;width: 100%}
             body{margin: 0px;height: 100%;width: 100%}
             div{height:100%;margin:0px;;-webkit-user-select: none;}
@@ -15,16 +16,29 @@
             .idx{height: 40px; width: 130px;line-height: 40px;font-size: 12px;font-family: Arial;padding-left: 15px;color: rgba(0, 0, 0,0.7);margin-left: 5px}
             #homeidx{margin-top:20px}
             #sttsbar{height: 20px;width: 100%;bottom: 0px;position:absolute;background:rgb(126, 181, 226);font-family: Arial;font-size: 9px;color:white;line-height: 22px;padding-left: 10px;box-sizing: border-box}
-            .page{position:absolute;width:100%;height: 100%;display: none;background:rgb(255, 255, 255);box-sizing: border-box;font-size: 12px;font-family: Arial}
-            #homel{float: left;width:50%;height: 100%;box-sizing: border-box;padding-left: 100px;padding-top: 50px}
-            #homer{float: right;width: 50%;height:100%;box-sizing: border-box;padding-top: 50px}
-            .info{color: rgb(122, 122, 122)}
+            .page{position:absolute;width:100%;height: 100%;display: none;background:rgb(255, 255, 255);box-sizing: border-box;font-size: 12px;font-family: Arial;}
             #homepg{display: inline;opacity: 0;}
+            #homediv{position: absolute;height:60%;width: 100%;bottom: 0px;left:0px}
+            #mainstatus{position: absolute; top:30%;transform: translate(-50%,-50%);left:50%;height:250px;width: 250px;}
+            #mp{height: 100%;width: 100%}
+            #mstxtnum{font-family: Arial;font-size: 35px;}
+            .num{position :absolute;top:45%;left:52%;transform: translate(-50%,-50%);color:rgb(113, 150, 219)}
+            #mstxttit{font-family: Arial;font-size: 15px}
+            .tit{position :absolute;top:60%;left:50%;transform: translate(-50%,-50%);;color:rgb(113, 150, 219)}
+            #secstatusl{position: absolute; top:70%;transform: translate(-50%,-50%);left:20%;height:200px;width: 200px;}
+            #sl{height: 100%;width: 100%}
+            #slstxtnum{font-family: Arial;font-size: 30px;}
+            #slstxttit{font-family: Arial;font-size: 13px}
+            #secstatusr{position: absolute; top:70%;transform: translate(-50%,-50%);left:80%;height:200px;width: 200px;}
+            #sr{height: 100%;width: 100%}
+            #srstxtnum{font-family: Arial;font-size: 30px;}
+            #srstxttit{font-family: Arial;font-size: 13px}
 
-            @keyframes fadein{
-                from {opacity: 0}
-                to   {opacity: 1} 
+            @keyframes rot{
+                from {transform: rotate(-180deg)}
+                to {transform: rotate(0deg)}
             }
+
         </style>
         
     </head>
@@ -44,22 +58,35 @@
                 </div>
                 <div id="right_content">
                     <div id="homepg" class="page">
-                        <div id="homel">
-                            <p>Product Module: </p><br/>
-                            <p>Proguct Id: </p><br/>
-                            <p>Software Version: </p><br/>
-                            <p>Connection Status: </p><br/>
-                            <p>Connecting Port: </p>
+                        <div id="mainstatus">
+                            <img id="mp" src="img/circ.png">
+                            <b id="mstxtnum" class="num">0 Kg</b>
+                            <p id="mstxttit" class="tit">Total Weight</p>
                         </div>
-                        <div id="homer">
-                            <p id="pm" class="info">---------------</p><br/>
-                            <p id="pi" class="info">---------------</p><br/>
-                            <p id="sv" class="info">---------------</p><br/>
-                            <p id="cs" class="info">Disconnected</p><br/>
-                            <p id="cp" class="info">---------------</p>
+                        <div id="secstatusl">
+                            <img id="slp" src="img/circ.png">
+                            <b id="slstxtnum" class="num">0 Cal</b>
+                            <p id="slstxttit" class="tit">Food Intake</p>
+                        </div>
+                        <div id="secstatusr">
+                            <img id="srp" src="img/circ.png">
+                            <b id="srstxtnum" class="num">0 mL</b>
+                            <p id="srstxttit" class="tit">Water Intake</p>
                         </div>
                     </div>
-                    <div id="cfgpg" class="page">configuration</div>
+                    <div id="cfgpg" class="page">
+                        <div id="configcontent">
+                            <div id="config1">
+                                <div "cfg1set"></div>
+                                <p>Target Weight</p>
+                            </div>
+                            <div id="config2">
+                                <div id="cfg2set"></div>
+                                <p>Standard Foodsupply</p>
+                            </div>
+                        </div>
+                        <div id="save"></div>
+                    </div>
                     <div id="fdpg" class="page">food data</div>
                     <div id="wtrdpg" class="page">water</div>
                     <div id="wgtpg" class="page">weight data</div>
