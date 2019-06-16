@@ -22,7 +22,7 @@
             #mainstatus{position: absolute; top:30%;transform: translate(-50%,-50%);left:50%;height:250px;width: 250px;}
             #mp{height: 100%;width: 100%}
             #mstxtnum{font-family: Arial;font-size: 35px;}
-            .num{position :absolute;top:45%;left:52%;transform: translate(-50%,-50%);color:rgb(113, 150, 219)}
+            .num{position :absolute;top:45%;left:50%;transform: translate(-50%,-50%);color:rgb(113, 150, 219)}
             #mstxttit{font-family: Arial;font-size: 15px}
             .tit{position :absolute;top:60%;left:50%;transform: translate(-50%,-50%);;color:rgb(113, 150, 219)}
             #secstatusl{position: absolute; top:70%;transform: translate(-50%,-50%);left:20%;height:200px;width: 200px;}
@@ -33,7 +33,11 @@
             #sr{height: 100%;width: 100%}
             #srstxtnum{font-family: Arial;font-size: 30px;}
             #srstxttit{font-family: Arial;font-size: 13px}
-
+            #configcontent{background: pink;height:80%;width:100%;overflow: hidden;}
+            #save{background: rgb(133, 14, 33);height:20%;width:100%}
+            #set{height: 100%;width:50%}
+            #cfg1set{float:left;position: absolute;width:50%;}
+            #cfg2set{float: right;position: absolute;width:50%}
             @keyframes rot{
                 from {transform: rotate(-180deg)}
                 to {transform: rotate(0deg)}
@@ -77,11 +81,11 @@
                     <div id="cfgpg" class="page">
                         <div id="configcontent">
                             <div id="config1">
-                                <div "cfg1set"></div>
+                                <div "cfg1set" class="set"></div>
                                 <p>Target Weight</p>
                             </div>
                             <div id="config2">
-                                <div id="cfg2set"></div>
+                                <div id="cfg2set" class="set"></div>
                                 <p>Standard Foodsupply</p>
                             </div>
                         </div>
