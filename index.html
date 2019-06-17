@@ -3,6 +3,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <style>
+            @font-face{
+                font-family: ico;
+                src: url('font/gpico.woff')
+            }
             img{-webkit-user-drag: none}
             html{margin: 0px;height: 100%;width: 100%}
             body{margin: 0px;height: 100%;width: 100%}
@@ -19,25 +23,35 @@
             .page{position:absolute;width:100%;height: 100%;display: none;background:rgb(255, 255, 255);box-sizing: border-box;font-size: 12px;font-family: Arial;}
             #homepg{display: inline;opacity: 0;}
             #homediv{position: absolute;height:60%;width: 100%;bottom: 0px;left:0px}
-            #mainstatus{position: absolute; top:30%;transform: translate(-50%,-50%);left:50%;height:250px;width: 250px;}
-            #mp{height: 100%;width: 100%}
+            #mainstatus{position: absolute; top:30%;transform: translate(-50%,-50%);left:50%;height:240px;width: 240px;}
             #mstxtnum{font-family: Arial;font-size: 35px;}
             .num{position :absolute;top:45%;left:50%;transform: translate(-50%,-50%);color:rgb(113, 150, 219)}
             #mstxttit{font-family: Arial;font-size: 15px}
-            .tit{position :absolute;top:60%;left:50%;transform: translate(-50%,-50%);;color:rgb(113, 150, 219)}
+            .tit{position :absolute;top:60%;left:50%;transform: translate(-50%,-50%);color:rgb(113, 150, 219)}
             #secstatusl{position: absolute; top:70%;transform: translate(-50%,-50%);left:20%;height:200px;width: 200px;}
-            #sl{height: 100%;width: 100%}
             #slstxtnum{font-family: Arial;font-size: 30px;}
             #slstxttit{font-family: Arial;font-size: 13px}
             #secstatusr{position: absolute; top:70%;transform: translate(-50%,-50%);left:80%;height:200px;width: 200px;}
-            #sr{height: 100%;width: 100%}
             #srstxtnum{font-family: Arial;font-size: 30px;}
             #srstxttit{font-family: Arial;font-size: 13px}
-            #configcontent{background: pink;height:80%;width:100%;overflow: hidden;}
-            #save{background: rgb(133, 14, 33);height:20%;width:100%}
-            #set{height: 100%;width:50%}
-            #cfg1set{float:left;position: absolute;width:50%;}
-            #cfg2set{float: right;position: absolute;width:50%}
+            #configcontent{height:85%;width:100%;overflow: hidden;}
+            #save{height:15%;width:100%;position: relative;border-top: solid 1px rgb(204, 204, 204);}
+            .cfg{height: 40%;width:100%;top:0px;color:rgb(113, 150, 219);box-sizing:border-box;margin-top: 30px}
+            #config1{position: relative;top:0px;}
+            #config2{position: relative;top:0px;}
+            .anime{animation-fill-mode: forwards}
+            .cfgname{top:50%;left:100px;position: absolute;transform: translate(0,-50%);font-size: 15px}
+            .set{position:absolute;border:solid 1px rgb(113, 150, 219);border-radius: 10px;height:70px;width: 90px;top:55%;left:70%;transform: translate(-50%,-50%)}
+            .ico{font-family: ico;font-size: 12px; position: absolute}
+            .adjbtn{position:absolute;left:10px;}
+            .up{top:-0px}
+            .down{bottom: -0px}
+            .unit{position: absolute;font-size: 30px;line-height: 35%}
+            #cfg1unit{right:-55px;}
+            #cfg2unit{right:-35px;}
+            .valuect{position :absolute;height: 100%;width: 70%;right:0px;font-size: 30px;}
+            .value{position:absolute;line-height: 30%;left:20%;}
+            #svbt{border:solid 1px rgb(113, 150, 219);border-radius: 5px;position:absolute;height: 30px;width:80px;text-align: center;line-height: 200%;font-size: 15px;color:rgb(113, 150, 219);top:50%;left:21%;transform: translate(-50%,-50%);}
             @keyframes rot{
                 from {transform: rotate(-180deg)}
                 to {transform: rotate(0deg)}
@@ -63,33 +77,47 @@
                 <div id="right_content">
                     <div id="homepg" class="page">
                         <div id="mainstatus">
-                            <img id="mp" src="img/circ.png">
+                            <img id="mp" class="anime" src="img/circm.png">
                             <b id="mstxtnum" class="num">0 Kg</b>
                             <p id="mstxttit" class="tit">Total Weight</p>
                         </div>
                         <div id="secstatusl">
-                            <img id="slp" src="img/circ.png">
+                            <img id="slp" class="anime" src="img/circ.png">
                             <b id="slstxtnum" class="num">0 Cal</b>
                             <p id="slstxttit" class="tit">Food Intake</p>
                         </div>
                         <div id="secstatusr">
-                            <img id="srp" src="img/circ.png">
+                            <img id="srp" class="anime" src="img/circ.png">
                             <b id="srstxtnum" class="num">0 mL</b>
                             <p id="srstxttit" class="tit">Water Intake</p>
                         </div>
                     </div>
                     <div id="cfgpg" class="page">
                         <div id="configcontent">
-                            <div id="config1">
-                                <div "cfg1set" class="set"></div>
-                                <p>Target Weight</p>
+                            <div id="config1" class="cfg">
+                                <p id="cfg1txt" class="cfgname">Target Weight:</p>
+                                <div id="cfg1set" class="set">
+                                    <div id="cfg1btn" class="adjbtn">
+                                        <p class="ico up">A</p><p class="ico down">B</p>
+                                    </div>
+                                    <p id="cfg1unit" class="unit">Kg</p>
+                                    <div class="valuect"><p class="value">20</p></div>
+                                </div>
                             </div>
-                            <div id="config2">
-                                <div id="cfg2set" class="set"></div>
-                                <p>Standard Foodsupply</p>
+                            <div id="config2" class="cfg">
+                                <p id="cfg2txt" class="cfgname">Foodsupply per Day:</p>
+                                <div id="cfg2set" class="set">
+                                    <div id="cfg2btn" class="adjbtn">
+                                        <p class="ico up">A</p><p class="ico down">B</p>
+                                    </div>
+                                    <p id="cfg2unit" class="unit">g</p>
+                                    <div class="valuect"><p class="value">50</p></div>
+                                </div>
                             </div>
                         </div>
-                        <div id="save"></div>
+                        <div id="save">
+                            <div id="svbt">Save</div>
+                        </div>
                     </div>
                     <div id="fdpg" class="page">food data</div>
                     <div id="wtrdpg" class="page">water</div>

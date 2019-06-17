@@ -1,4 +1,4 @@
-
+var ipc = require('electron').ipcRenderer;
 
 
 bt_anim("#closebt","img/closehvr.png");//add close button anime
@@ -26,7 +26,6 @@ lb_anim(".idx", "rgb(224, 229, 241)",function(id){//add left bar task
 });
 
 //add close function
-var ipc = require('electron').ipcRenderer;
 $("#closebt").click(function (){1
     ipc.send('window-close');
 });
@@ -36,8 +35,24 @@ $('#homeidx').trigger("click");
 updatemessage("New Message");
 
 $("#homepg").on("pageshown",function(){
-    console.log(1);
+  
     $("#mp").css({animation:"rot 1.5s"});
     $("#slp").css({animation:"rot 1s"});
     $("#srp").css({animation:"rot 1.25s"});
+});
+
+
+//config
+let weight=20;
+let food=50;
+//save button anime
+$("#svbt").hover(function(){
+
+    $(this).css({background:"rgb(243, 246, 255)"});
+},function(){
+    $(this).css({background:""});
+});
+
+$("#svbt").click(function(){
+    ipc.send('save',{weight:weight,food:food});
 });

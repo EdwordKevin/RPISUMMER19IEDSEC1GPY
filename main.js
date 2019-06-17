@@ -38,6 +38,10 @@ elec.app.on('window-all-closed', () => {
     elec.app.quit();
 })
 
-ipc.on('window-close',function(){
+ipc.on('window-close',()=>{
     win.close();
 })
+
+ipc.on("save",(sys,data)=>{
+    console.log(data);
+});
