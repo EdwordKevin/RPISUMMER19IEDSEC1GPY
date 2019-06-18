@@ -43,7 +43,7 @@ $("#homepg").on("pageshown",function(){
 
 
 //config
-let weight=20;
+let weight=10;
 let food=50;
 //save button anime
 $("#svbt").hover(function(){
@@ -57,7 +57,7 @@ $("#svbt").click(function(){
     ipc.send('save',{weight:weight,food:food});
 });
 
-$(".ico").hover(function(){
+$(".arrow").hover(function(){
     $(this).css({color:"rgb(143, 180, 249)"});
 },function(){
     $(this).css({color:""});
