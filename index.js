@@ -1,5 +1,5 @@
 var ipc = require('electron').ipcRenderer;
-
+var fs = require("fs");
 
 bt_anim("#closebt","img/closehvr.png");//add close button anime
 
@@ -56,3 +56,43 @@ $("#svbt").hover(function(){
 $("#svbt").click(function(){
     ipc.send('save',{weight:weight,food:food});
 });
+
+$(".ico").hover(function(){
+    $(this).css({color:"rgb(143, 180, 249)"});
+},function(){
+    $(this).css({color:""});
+});
+
+$("#cfg1btn .up").click(function(){
+ 
+    if(weight===null) return;
+    if(weight == 15) return;   
+    weight+=1;
+    $("#cfg1set .valuect p").html(weight);
+})
+
+$("#cfg1btn .down").click(function(){
+    if(weight===null) return;
+    if(weight == 0) return;
+    weight-=1;
+    $("#cfg1set .valuect p").html(weight);
+})
+
+$("#cfg2btn .up").click(function(){
+    if(food===null) return;
+    if(food == 100) return;
+    food+=50;
+    $("#cfg2set .valuect p").html(food);
+})
+
+$("#cfg2btn .down").click(function(){
+    if(food===null) return;
+    if(food == 0) return;
+    food-=5;
+    $("#cfg2set .valuect p").html(food);
+})
+
+//food chart
+buildchart('fdChart',"food.json","Food Intake(g)","g",'7 Days Food Intake','rgba(255, 99, 132, 1)','rgba(255, 99, 132, 0.2)');
+buildchart('wtChart',"water.json","water Intake(g)","g",'7 Days Water Intake','rgba(54, 162, 235, 1)','rgba(54, 162, 235, 0.2)');
+buildchart('wgChart',"weight.json","Weight(kg)","Kg",'7 Days Weight','rgba(255, 206, 86, 1)','rgba(255, 206, 86, 0.2)');
