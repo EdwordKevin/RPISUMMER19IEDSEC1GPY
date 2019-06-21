@@ -4,7 +4,7 @@
 #include <Q2HX711.h>
 #include <SPI.h>
 
-
+/* */
 File myFile;
 Q2HX711 scale1(3, 2);
 Q2HX711 scale2(7, 6);
@@ -15,7 +15,7 @@ Stepper motor(200,A0,A1,A2,A3);
 void setup() {
   lcd.init();
   lcd.backlight(); 
-  Serial.begin(115200);
+  Serial.begin(9600);
   motor.setSpeed(60);
   Serial.println("connected");
  
@@ -39,13 +39,20 @@ void setup() {
 
 void loop() {
   if(!Serial.available()) return;
-  char letter=Serial.read();
-  Serial.write(letter);
-  if(letter=="x"){
-    Serial.println("y");
+  String str="";
+  while(Serial.available()) {
+    char a=Serial.read();
+    str+=a;
+    delay(1);
   }
-  if(letter=="a"){
-    Serial.println("b");
+  
+
+  Serial.println(str);
+  if(str=="gg"){
+    Serial.println("yes");
+  }
+  if(str=="aa"){
+    Serial.println("no");
   }
   motor.setSpeed(100);
   //motor.step(40);

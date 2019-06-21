@@ -28,7 +28,7 @@ class date{
         int day;
 };
 
-String read_bt();
+String readmg();
 int measure_weight();
 int measure_food();
 int measure_water();
