@@ -3,21 +3,23 @@
 #include <Stepper.h>
 #include <Q2HX711.h>
 #include <SPI.h>
+#include <SoftwareSerial.h>
 
-/* */
+/* 
 File myFile;
 Q2HX711 scale1(3, 2);
 Q2HX711 scale2(7, 6);
 LiquidCrystal_I2C lcd(0x27,16,2);  
 #define spr=200;
 Stepper motor(200,A0,A1,A2,A3);
-
+*/
+SoftwareSerial s1(2,3);
 void setup() {
-  lcd.init();
-  lcd.backlight(); 
-  Serial.begin(9600);
-  motor.setSpeed(60);
-  Serial.println("connected");
+  //lcd.init();
+  //lcd.backlight(); 
+  Serial.begin(57600);
+  //motor.setSpeed(60);
+ // Serial.println("connected");
  
   /*
   while(1){
@@ -38,6 +40,16 @@ void setup() {
 }
 
 void loop() {
+  String a="";
+  if(Serial.available()) delay(100);
+  while(Serial.available()){
+    a+=(char)Serial.read();
+    delay(1);
+  }
+   //Serial.println("ms");
+   if (a!="") Serial.println("get"+a);
+  //delay(5000);
+  /*
   if(!Serial.available()) return;
   String str="";
   while(Serial.available()) {
@@ -58,4 +70,5 @@ void loop() {
   //motor.step(40);
   //Serial.println("s1"+String(scale1.read()/100000-70));
   //Serial.println("s2"+String(scale2.read()/10000));
+  */
 }
