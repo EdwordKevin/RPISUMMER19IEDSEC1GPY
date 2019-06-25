@@ -1,5 +1,6 @@
 var ipc = require('electron').ipcRenderer;
 var fs = require("fs");
+var child_process = require('child_process');
 
 bt_anim("#closebt","img/closehvr.png");//add close button anime
 
@@ -96,3 +97,16 @@ $("#cfg2btn .down").click(function(){
 buildchart('fdChart',"food.json","Food Intake(g)","g",'7 Days Food Intake','rgba(255, 99, 132, 1)','rgba(255, 99, 132, 0.2)');
 buildchart('wtChart',"water.json","water Intake(g)","g",'7 Days Water Intake','rgba(54, 162, 235, 1)','rgba(54, 162, 235, 0.2)');
 buildchart('wgChart',"weight.json","Weight(kg)","Kg",'7 Days Weight','rgba(255, 206, 86, 1)','rgba(255, 206, 86, 0.2)');
+
+setInterval(()=>{
+    child_process.exec('python m.py ', function (error, stdout, stderr) {
+        //console.log(stdout);
+        if(stdout!=""){
+            let js=JSON.parse(stdout);
+            console.log(js);
+            $("#mstxtnum").html(js.weight+" Kg");
+            $("#slstxtnum").html(js.food+" g");
+            $("#srstxtnum").html(js.water+" mL");
+        }
+    });
+},5000)

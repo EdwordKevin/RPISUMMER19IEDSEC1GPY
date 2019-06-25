@@ -3,6 +3,9 @@
         {
             "name": "Win32",
             "includePath": [
+                "C:\\Program Files (x86)\\Arduino\\document\\libraries\\Queuetue_HX711_Library\\src",
+                "C:\\Program Files (x86)\\Arduino\\document\\libraries\\MsTimer2",
+                "C:\\Program Files (x86)\\Arduino\\document\\libraries\\LiquidCrystal_I2C",
                 "C:\\Users\\Ed\\Documents\\Arduino\\libraries\\MsTimer2",
                 "C:\\Program Files (x86)\\Arduino\\libraries\\SpacebrewYun\\src",
                 "C:\\Program Files (x86)\\Arduino\\libraries\\Stepper\\src",
@@ -11,8 +14,7 @@
                 "C:\\Users\\Ed\\Documents\\Arduino\\libraries\\Queuetue_HX711_Library\\src",
                 "C:\\Program Files (x86)\\Arduino\\tools\\**",
                 "C:\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\**",
-                "${workspaceFolder}/**",
-                "${workspaceFolder}"
+                "${workspaceFolder}/**"
             ],
             "defines": [
                 "_DEBUG",
@@ -26,8 +28,7 @@
             "intelliSenseMode": "msvc-x64",
             "forcedInclude": [
                 "C:\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\cores\\arduino\\Arduino.h"
-            ],
-            "browse": {"path": ["${workspaceFolder}"]}
+            ]
         }
     ],
     "version": 4

@@ -37,9 +37,10 @@ class Data{
         uint weight;
         uint hsy_food;
         uint hsy_water;
-        Data(Date d);
+        Data(Date& d);
         Data(){}
 };
+
 
 extern Config cfg;
 extern Q2HX711 main_cell1;
@@ -55,8 +56,11 @@ extern int food_supply;
 extern Data data;
 extern Date date;
 extern File file;
+extern bool s_up;
+extern bool m_up;
+extern bool m10_up;
 
-void print(char line[]);
+void print(String line);
 void measure_weight(Data& data);
 void measure_food(Data& data);
 void measure_water(Data& data);
@@ -66,11 +70,11 @@ int get_water();
 void run_motor();
 void stop_motor();
 void update_sdcard(Data& data);
-void send(char line[]);
-char* read();
+void send(String line);
+String read();
 void update_data();
 void time_up();
-
+String* split(String a, char b,int& len);
 
 
 #endif

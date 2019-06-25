@@ -6,17 +6,18 @@
 #include <SPI.h>
 #include <SD.h>
 #include <avr/pgmspace.h>
-#define kweight 0.001
-#define bweight (-10)
-#define kwater 0.001
-#define bwater (-10)
-#define kfood 0.001
-#define bfood (-10)
+#define kweight 0.0000458
+#define bweight (-789)
+#define kwater 0.00268
+#define bwater (-24022)
+#define kfood 0.000872
+#define bfood (-7618)
 #define motor_port A1
 
-Data::Data(Date d):new_food(false),new_water(false),new_weight(false){
-    this->hsy_water=get_water();
-    this->hsy_food=get_food();
+Data::Data(Date& d):new_food(false),new_water(false),new_weight(false){
+    print("init data");
+    hsy_water=get_water();
+    hsy_food=get_food();
 }
 
 void operator+=(Date &a, int const& b){
@@ -29,29 +30,24 @@ void operator+=(Date &a, int const& b){
 }
 
 void time_up(){
-    static uint sec=0;
+    print("time check");
+    static int sec=0;
     sec++;
     if(sec%60==0) {
-        date+=1;
+        m_up=true;
     }
     if(sec%600==0) {
-        measure_food(data);
-        measure_water(data);
+        m10_up=true;
         sec=0;
     }
-    measure_weight(data);
-    if((date.hour==11 || date.hour==5) && !food_added){
-        food_added=true;
-        if(cfg.actual_weight>cfg.weight) food_supply+=cfg.actual_weight-20;
-        else if(cfg.actual_weight<cfg.weight) food_supply+=cfg.actual_weight+20;
-        else food_supply+=cfg.actual_weight;
-    }
-    if(date.hour!=11) food_added=false;
-    if(date.hour==0) food_supply=0;
+    s_up=true;
+
 }
 
 void measure_water(Data& data){
+    print("measure water");
     int water=get_water();
+    print(String(water));
     if(water-data.hsy_water>50){
         data.hsy_water=water;
     }
@@ -67,12 +63,16 @@ void measure_water(Data& data){
 }
 
 int get_water(){
-    int temp=water_cell.read();
+    //return 100;
+    print("get water");
+    long temp=water_cell.read();
     return temp*kwater+bwater;
 }
 
 void measure_food(Data& data){
+    print("measure_food");
     int food=get_food();
+    print(String(food));
     if(data.hsy_food-food>10){
         data.food=data.hsy_food-food;
         data.hsy_food=food;
@@ -95,22 +95,29 @@ void measure_food(Data& data){
 }
 
 int get_food(){
-    int temp=food_cell.read();
+    //return 100;
+    
+    long temp=food_cell.read();
+    //print("get food");
     return temp*kfood+bfood;
 }
 
 void measure_weight(Data& data){
+    print("measure weight");
     int weight=get_weight();
+    print(String(weight));
     if(weight>5) {
         data.weight=weight;
         data.new_weight=true;
     }
+    
 }
 
 int get_weight(){
-    int temp=main_cell1.read();
+    print("get weight");
+    long temp=main_cell1.read();
     temp+=main_cell2.read();
-    return temp*kfood+bfood;
+    return temp*kweight+bweight;
 }
 
 void run_motor(){
@@ -159,36 +166,55 @@ void update_sdcard(Data& data){
     }
 }
 
-void print(char line[]){
+void print(String line){
+    lcd.clear();
     lcd.setCursor(0,0);
     lcd.print(line);
 }
 
-void send(char line[]){
-    Serial.print("\n");
-    Serial.print(line);
-    Serial.println();
+void print(char c){
+    lcd.clear();
+    lcd.setCursor(0,0);
+    lcd.print(c);
 }
 
-char* read(){
-    static char* read_line="";
+void send(String line){
+    print(line);
+    Serial.print('%');
+    Serial.print(line);
+    Serial.println('%');
+}
+
+String read(){
+    String read_line="";
     char l;
-    delay(100);
+    Serial.println("read");
+    int s=0;
+    while(!Serial.available()){
+        delay(1000);
+        print(String(s));
+        s++;
+        if(s==5) return "";
+    }
+    
     while(Serial.available()){
         l=Serial.read();
-        if(l=='\n') {
+        if(l=='%') {
             break;
         }
-        delay(5);
+        delay(10);
     }
+    delay(10);
     while(Serial.available()){
         l=Serial.read();
-        if(l=='\n') {
+        if(l=='%') {
             break;
         }
         read_line += l;
-        delay(5);
+        delay(50);
     }
+    Serial.print(read_line);
+    print(read_line);
     return read_line;
 }
 
@@ -197,11 +223,11 @@ void update_data(){
     if(!read()=="ready") return;
 
     file=SD.open("food.txt");
-    Serial.write('\n');
+    Serial.write('%');
     while (file.available()) {
       Serial.write(file.read());
     }
-    Serial.write('\n');
+    Serial.write('%');
     file.close();
     SD.remove("food.txt");
 
@@ -222,4 +248,30 @@ void update_data(){
     Serial.write('\n');
     file.close();
     SD.remove("weight.txt");
+}
+
+String* split(String a, char b,int& len){
+    print("enter");
+    len=0;
+    for(int i=0;i<a.length();++i){
+        if(a[i]==b) len++;
+    }
+    print("c");
+    String* save=new String[len+1];
+    for(int i=0;i<len+1;i++){
+        save[i]="";
+    }
+
+    len=0;
+    for(int i=0;i<a.length();++i){
+        if (a[i]==b){
+            len++;
+            Serial.println(a[i]);
+            continue;
+        }else{
+            save[len]+=a[i];
+        }
+    }
+    print("end");
+    return save;
 }
