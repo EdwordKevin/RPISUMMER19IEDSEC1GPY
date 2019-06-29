@@ -1,6 +1,6 @@
 var ipc = require('electron').ipcRenderer;
 var fs = require("fs");
-var child_process = require('child_process');
+var child_process = require('child_process');//will be change to socket for future improvement
 
 bt_anim("#closebt","img/closehvr.png");//add close button anime
 
@@ -104,7 +104,7 @@ setInterval(()=>{
         if(stdout!=""){
             let js=JSON.parse(stdout);
             console.log(js);
-            $("#mstxtnum").html(js.weight+" Kg");
+            $("#mstxtnum").html(js.weight/10+" Kg");
             $("#slstxtnum").html(js.food+" g");
             $("#srstxtnum").html(js.water+" mL");
         }
